@@ -1,0 +1,8 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+frontend/node_modules
+backend/node_modules
+frontend/dist
+backend/public
