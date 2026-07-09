@@ -1,7 +1,7 @@
 const path = require('path');
 
-// Forzar PostgreSQL como controlador por defecto en lugar de SQLite
-const driver = (process.env.DB_DRIVER || 'postgres').trim().toLowerCase();
+// Usar SQLite por defecto localmente, PostgreSQL sólo si se configura con DB_DRIVER=postgres o DB_DRIVER=pg
+const driver = (process.env.DB_DRIVER || 'sqlite').trim().toLowerCase();
 
 if (driver === 'postgres' || driver === 'pg') {
   const { Pool } = require('pg');
