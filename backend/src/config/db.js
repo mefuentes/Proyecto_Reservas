@@ -6,14 +6,11 @@ const driver = (process.env.DB_DRIVER || 'sqlite').trim().toLowerCase();
 if (driver === 'postgres' || driver === 'pg') {
   const { Pool } = require('pg');
   const pool = new Pool({
-    host: process.env.PGHOST || 'localhost',
-    port: Number(process.env.PGPORT || 5432),
-    database: process.env.PGDATABASE || process.env.DB_NAME || 'clubdb',
-    user: process.env.PGUSER || process.env.DB_USER || 'clubuser',
-    password: process.env.PGPASSWORD || process.env.DB_PASSWORD || 'changeme',
-    ssl: process.env.PGSSLMODE === 'require' ? { rejectUnauthorized: false } : false,
-  });
-
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === 'production'
+    ? { rejectUnauthorized: false }
+    : false,
+});
   function formatSql(sql) {
     let i = 0;
     return sql.replace(/\?/g, () => `$${++i}`);

@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS reservas (
     hora_fin TEXT NOT NULL,
     duracion_minutos INTEGER NOT NULL,
     nombre_cliente TEXT NOT NULL,
-    telefono_cliente TEXT NOT NULL,
+    telefono_cliente TEXT,
     estado TEXT NOT NULL DEFAULT 'confirmada',
     origen TEXT NOT NULL DEFAULT 'web',
     observaciones TEXT,
